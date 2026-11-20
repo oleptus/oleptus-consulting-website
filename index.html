@@ -8,48 +8,102 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <nav class="navbar">
       <div class="container nav-container">
-        <a href="/" class="brand">oleptus consulting</a>
-        <div class="nav-links"></div>
+        <a href="/" class="brand">oleptus <span>consulting</span></a>
+        <div class="nav-links">
+          <a href="#capabilities">Capabilities</a>
+          <a href="#approach">Our Approach</a>
+          <a href="#about">About Us</a>
+        </div>
       </div>
     </nav>
 
     <div class="hero-bg-wrapper">
+      <div class="hero-clouds-bg" aria-hidden="true"></div>
+
       <header class="hero">
         <div class="container hero-container">
           <h1 class="hero-title">
-            Enterprise Transformation<br />
-            M&amp;A Integration<br />
-            Complex Programme Delivery
+            Bridging the gap between<br />executive strategy and<br />
+            value realisation.
           </h1>
         </div>
 
-        <!-- Edge-to-edge line with left padding alignment -->
+        <!-- Line aligned with headline left edge, ending at the 1280px main page right edge -->
         <div class="hero-edge-line-container">
           <div class="hero-edge-line"></div>
         </div>
 
         <div class="container hero-container">
-          <h2 class="hero-subtitle">
-            Bridging the gap between executive strategy and value realisation.
-          </h2>
-        </div>
-        <div class="hero-banner">
-          <p>
-            Combining execution expertise with a proactive, hands on delivery
-            approach to ensure success and accelerate execution for Private
-            Equity portfolios and corporate clients.
+          <p class="hero-subtitle">
+            Combining execution expertise with a proactive, hands-on delivery
+            approach to ensure success and accelerate execution for private
+            equity portfolios and corporate clients.
           </p>
+
+          <div class="hero-pillars">
+            <div class="pillar-box">
+              <svg
+                class="pillar-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Enterprise Transformation</span>
+            </div>
+
+            <div class="pillar-box">
+              <svg
+                class="pillar-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>M&amp;A Integration</span>
+            </div>
+
+            <div class="pillar-box">
+              <svg
+                class="pillar-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Complex Programme Delivery</span>
+            </div>
+          </div>
+
+          <div class="hero-cta-wrapper">
+            <a href="#contact" class="btn-primary">Let's Connect</a>
+          </div>
         </div>
       </header>
 
-      <section class="value-prop-section">
+      <section id="about" class="value-prop-section">
         <div class="container value-prop-container">
           <div class="value-prop-box">
             <div class="value-prop-text">
@@ -82,7 +136,7 @@
       </section>
     </div>
 
-    <section class="deployments-section">
+    <section id="approach" class="deployments-section">
       <div class="container">
         <h2 class="section-title">Core Execution Scenarios</h2>
         <div class="deployments-stack">
@@ -142,12 +196,12 @@
       <img src="wv1.png" alt="" class="wave-divider-right" />
     </div>
 
-    <section class="capabilities">
+    <section id="capabilities" class="capabilities">
       <div class="container">
-        <h2 class="section-title">Core Delivery Workstreams</h2>
+        <h2 class="section-title">Common Delivery Workstreams</h2>
         <div class="grid">
           <div class="card">
-            <h3>Enterprise Systems & IT Consolidation</h3>
+            <h3>Enterprise Systems &amp; IT Consolidation</h3>
             <p>
               Seamless integration, data migration, and rationalisation of
               complex ERP, CRM, and infrastructure.
@@ -163,7 +217,7 @@
           </div>
 
           <div class="card">
-            <h3>Capability & Operational Readiness</h3>
+            <h3>Capability &amp; Operational Readiness</h3>
             <p>
               Design and delivery of training frameworks to upskill front-line
               teams and embed new operational capabilities.
@@ -171,7 +225,7 @@
           </div>
 
           <div class="card">
-            <h3>Facility, Logistics & Infrastructure Transition</h3>
+            <h3>Facility, Logistics &amp; Infrastructure Transition</h3>
             <p>
               Physical asset relocations, legacy site closures, and capacity
               upgrades with zero operational downtime.
@@ -179,7 +233,7 @@
           </div>
 
           <div class="card">
-            <h3>Workforce, TUPE & Cultural Integration</h3>
+            <h3>Workforce, TUPE &amp; Cultural Integration</h3>
             <p>
               Managing complex TUPE transfers, redundancy consultations, and
               driving cross-functional organisational alignment.
@@ -187,7 +241,7 @@
           </div>
 
           <div class="card">
-            <h3>Finance & Back-Office Integration</h3>
+            <h3>Finance &amp; Back-Office Integration</h3>
             <p>
               Harmonising corporate governance, financial reporting systems,
               procurement contracts, and shared service models.
@@ -195,7 +249,7 @@
           </div>
 
           <div class="card">
-            <h3>Commercial & Go-To-Market Alignment</h3>
+            <h3>Commercial &amp; Go-To-Market Alignment</h3>
             <p>
               Integrating sales pipelines, customer-facing systems, product
               portfolios, and branding transitions.
@@ -203,7 +257,7 @@
           </div>
 
           <div class="card">
-            <h3>Supply Chain & Spend Rationalisation</h3>
+            <h3>Supply Chain &amp; Spend Rationalisation</h3>
             <p>
               Consolidating vendor networks, harmonising procurement contracts,
               and optimising logistics to unlock immediate synergy savings.
@@ -213,7 +267,7 @@
       </div>
     </section>
 
-    <section class="contact-section">
+    <section id="contact" class="contact-section">
       <div class="container">
         <h2 class="section-title">Let’s dive in…</h2>
         <div class="contact-grid">
@@ -225,6 +279,7 @@
           >
             <span class="contact-label">Book a</span>
             <span class="contact-value">Discovery call</span>
+            <img src="calendar.png" alt="" class="contact-icon" />
           </a>
           <a
             href="https://www.linkedin.com/company/oleptus/"
@@ -234,14 +289,17 @@
           >
             <span class="contact-label">Connect on</span>
             <span class="contact-value">LinkedIn</span>
+            <img src="linkedin.png" alt="" class="contact-icon" />
           </a>
           <a href="mailto:info@oleptus.com" class="contact-card">
             <span class="contact-label">Email</span>
             <span class="contact-value">info@oleptus.com</span>
+            <img src="email.png" alt="" class="contact-icon" />
           </a>
           <a href="tel:+447912102957" class="contact-card">
             <span class="contact-label">Call</span>
             <span class="contact-value">+44 7912 102 957</span>
+            <img src="phone.png" alt="" class="contact-icon" />
           </a>
         </div>
       </div>
@@ -252,5 +310,35 @@
         <p>&copy; 2026 Oleptus. All rights reserved.</p>
       </div>
     </footer>
+
+    <script>
+      const clouds = document.querySelector(".hero-clouds-bg");
+      const heroWrapper = document.querySelector(".hero-bg-wrapper");
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (clouds && heroWrapper && !prefersReducedMotion) {
+        let ticking = false;
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+                if (scrollY <= heroWrapper.offsetHeight) {
+                  const scrollProgress = scrollY / heroWrapper.offsetHeight;
+                  const scale = 1 + scrollProgress * 0.2;
+                  clouds.style.transform = `scale(${scale})`;
+                }
+                ticking = false;
+              });
+              ticking = true;
+            }
+          },
+          { passive: true }
+        );
+      }
+    </script>
   </body>
 </html>

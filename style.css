@@ -4,13 +4,20 @@
   --text-primary: #135794;
   --text-secondary: #475569;
   --accent-color: #135794;
+  --accent-hover: #0e4373; /* Subtle darker shade of brand blue for hover states */
   --gold-accent: #d4af37;
   --border-color: #e6e2d8;
+  --page-width: 1220px;
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -18,6 +25,23 @@ body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   line-height: 1.6;
+  position: relative;
+}
+
+/* Faint shadow framing the main page area on wide screens */
+@media (min-width: 1221px) {
+  body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--page-width);
+    box-shadow: 0 0 28px rgba(19, 87, 148, 0.08);
+    pointer-events: none;
+    z-index: 5;
+  }
 }
 
 .container {
@@ -28,9 +52,22 @@ body {
 
 /* Navigation */
 .navbar {
-  background-color: #135794;
-  padding: 1rem 1rem;
+  position: relative;
+  background-color: var(--bg-color);
+  padding: 1.25rem 0;
   border-bottom: none;
+}
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--page-width);
+  height: 1px;
+  background-color: var(--border-color);
 }
 
 .nav-container {
@@ -42,21 +79,90 @@ body {
 
 .brand {
   font-size: 2rem;
-  font-weight: 400;
-  color: #ffffff;
+  font-weight: 600;
+  color: var(--accent-color);
   text-decoration: none;
   letter-spacing: -0.05em;
 }
 
-/* Wrapper for Hero and Value Prop to share and extend the background image downward */
+.brand span {
+  font-weight: 300;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+/* Wrapper for Hero and Value Prop */
 .hero-bg-wrapper {
-  background-image:
-    linear-gradient(rgba(252, 251, 249, 0.88), rgba(252, 251, 249, 0.98)),
-    url("cloudsx.png");
+  position: relative;
+  overflow: hidden;
+}
+
+/* Moving cloud layer */
+.hero-clouds-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("cloudsx.png");
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-  overflow: hidden;
+  transform-origin: center center;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Stationary full-width beige fade so the bottom seam never drifts */
+.hero-bg-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(252, 251, 249, 0.88),
+    rgba(252, 251, 249, 0.98)
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Second beige overlay applied strictly over the central main page area */
+.hero-bg-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--page-width);
+  background: linear-gradient(
+    rgba(252, 251, 249, 0.9),
+    rgba(252, 251, 249, 0.1)
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Keep the hero text and value-prop box above all background layers */
+.hero-bg-wrapper > .hero,
+.hero-bg-wrapper > .value-prop-section {
+  position: relative;
+  z-index: 3;
 }
 
 /* Hero Section */
@@ -65,7 +171,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem 0 1rem;
+  padding: 4rem 0 2rem;
   background: transparent;
 }
 
@@ -76,61 +182,95 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(3rem, 6vw, 3.8rem);
-  font-weight: 400;
-  line-height: 1;
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.1;
   letter-spacing: -0.03em;
-  color: #135794;
-  margin-bottom: 0; /* Removed bottom margin since line is separate now */
-  padding-bottom: 0; /* Removed padding */
-  border-bottom: none; /* Removed internal border */
-  max-width: 1000px;
+  color: var(--accent-color);
+  margin-bottom: 0;
+  max-width: 100%;
 }
 
-/* Full-width line container that matches the left container margin alignment */
+/* Line locked to headline left edge, stopping at the main page right edge */
 .hero-edge-line-container {
   width: 100%;
-  padding-left: max(
-    5%,
-    calc((100vw - 1100px) / 2)
-  ); /* Dynamically matches your container's left edge */
-  margin: 1.5rem 0;
+  max-width: var(--page-width);
+  margin: 1.5rem auto;
+  padding-left: calc((min(100%, var(--page-width)) - min(90%, 1100px)) / 2);
 }
 
 .hero-edge-line {
   width: 100%;
   height: 1px;
-  background-color: #135794;
+  background-color: var(--accent-color);
 }
 
 .hero-subtitle {
-  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
-  font-weight: 500;
-  color: #334155;
-  margin-bottom: 4rem;
-  max-width: 900px;
-}
-
-.hero-banner {
-  background-color: #135794;
-  color: #ffffff;
-  padding: 2rem 0;
-  margin-top: 3rem;
-  border: none;
-  border-radius: 50px 0 0 50px;
-  width: 90%;
-  max-width: 1300px;
-  margin-left: auto;
-  text-align: right;
-}
-
-.hero-banner p {
-  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
   font-weight: 400;
-  line-height: 1.25;
-  padding-right: max(1.5rem, calc((100vw - 1100px) / 2));
-  padding-left: 2rem;
+  line-height: 1.5;
+  color: #334155;
+  margin-bottom: 1.5rem;
+  max-width: 900px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Balanced, compact pillar badges under the subtitle */
+.hero-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 2.25rem;
+}
+
+.pillar-box {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1.5px solid var(--accent-color);
+  border-radius: 6px;
+  padding: 0.35rem 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.pillar-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--accent-color);
+  flex-shrink: 0;
+}
+
+/* Primary CTA Button */
+.hero-cta-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--accent-color);
   color: #ffffff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.65rem 1.5rem;
+  border-radius: 6px;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(19, 87, 148, 0.18);
 }
 
 /* Value Proposition Section */
@@ -145,11 +285,11 @@ body {
 }
 
 .value-prop-box {
-  background: rgba(255, 255, 255, 0.5); /* 50% opacity white box */
+  background: rgba(255, 255, 255, 0.4);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 3rem 3rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  padding: 2rem 2rem;
+  box-shadow: inset 0 0 0px rgba(19, 87, 148, 0.07);
 }
 
 .value-prop-text p {
@@ -163,9 +303,9 @@ body {
 }
 
 .value-prop-text p.lead-text {
-  font-size: 1.2rem; /* A tiny bit bigger than standard 1.1rem */
-  font-weight: 600; /* Bolder weight */
-  color: #135794; /* Optionally pulls in your primary brand blue for visual emphasis */
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-color);
   margin-bottom: 1.25rem;
 }
 
@@ -194,11 +334,11 @@ body {
   grid-template-columns: 50px 1fr;
   gap: 1rem;
   align-items: center;
-  transition: border-color 0.2s ease; /* Smooth transition for the outline */
+  transition: border-color 0.2s ease;
 }
 
 .deployment-card:hover {
-  border-color: #135794; /* Darkens/shifts the border to your primary accent color on hover */
+  border-color: var(--accent-color);
 }
 
 .deployment-icon {
@@ -266,7 +406,7 @@ body {
 .section-title {
   font-size: 1.5rem;
   margin-bottom: 2rem;
-  border-bottom: 1px solid var(--accent-color); /* Restored underline */
+  border-bottom: 1px solid var(--accent-color);
   display: inline-block;
   padding-bottom: 0.5rem;
 }
@@ -316,24 +456,26 @@ body {
 }
 
 .contact-card {
-  background: #135794;
-  padding: 1.2rem;
-  border: 1px solid #135794;
+  background: var(--accent-color);
+  padding: 1.5rem 1.2rem;
+  border: 1px solid var(--accent-color);
   border-radius: 8px;
   text-decoration: none;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 0.25rem;
   transition:
+    background-color 0.2s ease,
     transform 0.2s ease,
-    box-shadow 0.2s ease,
-    opacity 0.2s ease;
+    box-shadow 0.2s ease;
 }
 
 .contact-card:hover {
+  background: var(--accent-hover);
   transform: translateY(-2px);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
-  opacity: 0.95;
 }
 
 .contact-label {
@@ -347,6 +489,19 @@ body {
   font-size: 1.15rem;
   font-weight: 600;
   color: #ffffff;
+}
+
+.contact-icon {
+  width: 100%;
+  max-width: 136px;
+  height: auto;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.contact-card:hover .contact-icon {
+  transform: scale(1.3);
 }
 
 /* Footer */
@@ -368,15 +523,7 @@ footer {
 
   .nav-links {
     flex-direction: row;
-    gap: 2rem;
-  }
-
-  .hero-title {
-    font-size: 3.5rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.6rem;
+    gap: 2.25rem;
   }
 
   .grid {
